@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SEC_Assignment.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-09T14:02:21" hostname="DESKTOP-FHVC9KJ" time="0.143">
+  <properties/>
+  <testcase name="application has a greeting" classname="SEC_Assignment.AppTest" time="0.143"/>
+  <system-out><![CDATA[HEY BRO
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
