@@ -6,9 +6,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import org.python.util.PythonInterpreter;
 import org.python.core.*;
-public class App {
+public class App //implements API
+{
 
-    private static ArrayList pluginList = new ArrayList<>();
+    private static ArrayList<Plugin> pluginList = new ArrayList<Plugin>();
     public static void main(String[] args)
     {
         int menuOption = DisplayMenu();
@@ -17,12 +18,11 @@ public class App {
             int pluginOption = getPluginMenuOption();
             if (pluginOption == 1)
             {
-                //View Plugins Here
+                System.out.println("Loaded Plugins");
             }
             else if(pluginOption == 2)
             {
                AddPlugin(pluginOption);
-                
             }
         }
         else if(menuOption == 2)
@@ -30,6 +30,11 @@ public class App {
             EvaluateExpression();
         }
     }
+    
+    /*void registerInputValues(){}
+    void registerNotifyCalculation(){}
+    void registerYValues(){}
+    void registerMathematicalFunctions(){}*/
     
     public static void AddPlugin(int pluginOption)
     {
@@ -107,12 +112,18 @@ public class App {
         double minValue = getMinimumValue();
         double maxValue = getMaximumValue(minValue);
         double incrementValue = getIncrementValue();
+        CalculationAPI calcApi= new CalculationAPI(expression, minValue, maxValue, incrementValue);
+        for(Plugin p : pluginList)
+        {
+            p.start(calcApi);
+        }
         String tempExp;
         for(double x = minValue; x <= maxValue; x+=incrementValue)
         {
             tempExp = expression;
             tempExp = tempExp.replace("x", Double.toString(x));
             double result = ((PyFloat) py.eval("float(" + tempExp + ")")).getValue();
+            calcApi.notifyResult(x, result);
             System.out.println("Result was: " + result);
         }
         
