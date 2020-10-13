@@ -6,6 +6,7 @@
 package SEC_Assignment;
 import SEC_Assignment.API;
 import java.util.ArrayList;
+import java.util.Scanner;
 /**
  *
  * @author 61459
@@ -43,7 +44,7 @@ public class CalculationAPI implements API
     {
         for(ResultHandler r : resultList)
         {
-            r.recieveResult(x, y);
+            r.PerformOperation(x, y);
         }
     }
 

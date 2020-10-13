@@ -9,10 +9,14 @@
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
-
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
 }
+evaluationDependsOn ':c_library'
+
+def libTasks = project(':c_library').tasks
+def debugLibTask = libTasks.matching{ it.name.startsWith('linkDebug') }.first()
+def releaseLibTask = libTasks.matching{ it.name.startsWith('linkRelease') }.first()
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -27,14 +31,15 @@ jar{
     
     dependencies {
     // This dependency is used by the application.
-    implementation 'com.google.guava:guava:29.0-jre'
-    testImplementation 'junit:junit:4.13'
-    implementation project(':APIProject')
-    implementation project(':CSVWriter')
-    implementation project(':MathFunctions')
-    implementation project(':NativeImpl')
-    implementation project(':Progress')
-    implementation 'org.python:jython-standalone:2.7.1'
+        implementation 'com.google.guava:guava:29.0-jre'
+        testImplementation 'junit:junit:4.13'
+        implementation project(':APIProject')
+        implementation project(':CSVWriter')
+        implementation project(':MathFunctions')
+        implementation project(':NativeImpl')
+        implementation project(':Progress')
+        implementation 'org.python:jython-standalone:2.7.1'
+	runtimeOnly files(releaseLibTask.linkedFile)	
     }
 }
 
@@ -47,4 +52,17 @@ subprojects{
     version = '1.0'
 }
 
-run {standardInput System.in}
+run {
+    standardInput System.in
+    dependsOn debugLibTask
+    systemProperty 'java.library.path', debugLibTask.linkedFile.get().asFile.parentFile
+}
+
+startScripts{
+    defaultJvmOpts = ['-Djava.library.path=APP_HOME_PLACEHOLDER/lib']
+    
+    doLast {
+        unixScript.text = unixScript.text.replace('APP_HOME_PLACEHOLDER', '$APP_HOME')
+        windowsScript.text = windowsScript.text.replace('APP_HOME_PLACEHOLDER', '%APP_HOME%')
+    }
+}

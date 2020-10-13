@@ -12,5 +12,5 @@ package SEC_Assignment;
 
 public interface ResultHandler
 {
-    void recieveResult(double x , double y);
+    void PerformOperation(double x , double y);
 }

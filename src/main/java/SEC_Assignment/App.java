@@ -8,7 +8,6 @@ import org.python.util.PythonInterpreter;
 import org.python.core.*;
 public class App //implements API
 {
-
     private static ArrayList<Plugin> pluginList = new ArrayList<Plugin>();
     public static void main(String[] args)
     {
@@ -21,7 +20,7 @@ public class App //implements API
                 int pluginOption = getPluginMenuOption();
                 if (pluginOption == 1)
                 {
-                    System.out.println("Loaded Plugins");
+                    displayPlugins();
                 }
                 else if(pluginOption == 2)
                 {
@@ -44,6 +43,7 @@ public class App //implements API
               String pluginName = getPluginName();
               Class<?> pluginClass = Class.forName(pluginName);
               Plugin pluginObj = (Plugin) pluginClass.getConstructor().newInstance();
+              pluginObj.setName(pluginClass.getName());
               pluginOption = 0;
               pluginList.add(pluginObj);
            }
@@ -75,9 +75,26 @@ public class App //implements API
         }
     }
     
+    public static void displayPlugins()
+    {
+        if(pluginList.isEmpty())
+        {
+            System.out.println("No plugins have been loaded yet");
+        }
+        else
+        {
+            System.out.println("................Loaded Plugins................");
+            for(Plugin p : pluginList)
+            {
+                System.out.println(p.getName());
+            }
+            System.out.println("..............................................");
+        }
+    }
+    
     public static String getPluginName()
     {
-        System.out.println("Please enter a plugin name");
+        System.out.println("..........Please enter a plugin name..........");
         Scanner sc = new Scanner(System.in);
         String pluginName = sc.nextLine();
         while(pluginName.length() == 0)
@@ -85,6 +102,7 @@ public class App //implements API
             System.out.println("Please enter a non-empty plugin name");
             pluginName = sc.nextLine();
         }
+        System.out.println(".............................................");
         return pluginName;
     }
     
