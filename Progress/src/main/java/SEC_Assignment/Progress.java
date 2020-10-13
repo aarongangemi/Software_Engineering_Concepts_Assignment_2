@@ -15,5 +15,6 @@ public class Progress implements ResultHandler, Plugin
     @Override
     public void start(API api) {
         this.maxXValue = api.getMaxValue();
+        api.registerNotifyCalculation(this);
     }
 }

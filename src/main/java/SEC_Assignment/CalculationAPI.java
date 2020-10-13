@@ -17,6 +17,7 @@ public class CalculationAPI implements API
     private double minValue;
     private double maxValue;
     private double incrementValue;
+    private double YValue;
     private ArrayList<ResultHandler> resultList = new ArrayList<ResultHandler>();
     public CalculationAPI(String expression, double minValue,double maxValue, double incrementValue)
     {
@@ -66,5 +67,14 @@ public class CalculationAPI implements API
         return incrementValue;
     }
 
+    @Override
+    public double getYValue() {
+        return YValue;
+    }
+
+    @Override
+    public void setYValue(double YValue) {
+        this.YValue = YValue;
+    }
     
 }

@@ -12,33 +12,32 @@ public class App //implements API
     private static ArrayList<Plugin> pluginList = new ArrayList<Plugin>();
     public static void main(String[] args)
     {
-        int menuOption = DisplayMenu();
-        if(menuOption == 1)
+        int menuOption = 0;
+        while(menuOption != 3)
         {
-            int pluginOption = getPluginMenuOption();
-            if (pluginOption == 1)
+            menuOption = DisplayMenu();
+            if(menuOption == 1)
             {
-                System.out.println("Loaded Plugins");
+                int pluginOption = getPluginMenuOption();
+                if (pluginOption == 1)
+                {
+                    System.out.println("Loaded Plugins");
+                }
+                else if(pluginOption == 2)
+                {
+                   AddPlugin(pluginOption);
+                }
             }
-            else if(pluginOption == 2)
+            else if(menuOption == 2)
             {
-               AddPlugin(pluginOption);
-            }
-        }
-        else if(menuOption == 2)
-        {
-            EvaluateExpression();
+                EvaluateExpression();
+            } 
         }
     }
     
-    /*void registerInputValues(){}
-    void registerNotifyCalculation(){}
-    void registerYValues(){}
-    void registerMathematicalFunctions(){}*/
-    
     public static void AddPlugin(int pluginOption)
     {
-        /*while(pluginOption == 2)
+        while(pluginOption == 2)
         {
            try
            {
@@ -47,7 +46,6 @@ public class App //implements API
               Plugin pluginObj = (Plugin) pluginClass.getConstructor().newInstance();
               pluginOption = 0;
               pluginList.add(pluginObj);
-              
            }
            catch(NoSuchMethodException e)
            {
@@ -74,7 +72,7 @@ public class App //implements API
                System.out.println("Can't call class constructor, try again");
                j.printStackTrace();
            }
-        }*/
+        }
     }
     
     public static String getPluginName()
@@ -107,15 +105,21 @@ public class App //implements API
     
     public static void EvaluateExpression()
     {
+        boolean progressLoaded = false;
         PythonInterpreter py = new PythonInterpreter();
         String expression = getExpression();
         double minValue = getMinimumValue();
         double maxValue = getMaximumValue(minValue);
         double incrementValue = getIncrementValue();
-        CalculationAPI calcApi= new CalculationAPI(expression, minValue, maxValue, incrementValue);
+        CalculationAPI calcApi= new CalculationAPI(expression, minValue, 
+                                                    maxValue, incrementValue);
         for(Plugin p : pluginList)
         {
             p.start(calcApi);
+            if(p instanceof Progress)
+            {
+                progressLoaded = true;
+            }
         }
         String tempExp;
         for(double x = minValue; x <= maxValue; x+=incrementValue)
@@ -125,8 +129,12 @@ public class App //implements API
             double result = ((PyFloat) py.eval("float(" + tempExp + ")")).getValue();
             calcApi.notifyResult(x, result);
             System.out.println("Result was: " + result);
+            calcApi.setYValue(result);
         }
-        
+        if(progressLoaded)
+        {
+            System.out.println("100% Calculation Complete");
+        }
     }
 
     private static int DisplayMenu()

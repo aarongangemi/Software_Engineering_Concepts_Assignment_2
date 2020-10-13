@@ -7,5 +7,7 @@ public interface API
     double getMinValue();
     double getMaxValue();
     double getIncrement();
+    double getYValue();
+    void setYValue(double YValue);
     // add getters for x, y, exp, increment
 }

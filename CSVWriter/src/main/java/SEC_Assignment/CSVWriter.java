@@ -29,6 +29,6 @@ public class CSVWriter implements ResultHandler, Plugin
     
     public void start(API api)
     {
-        api.registerNotifyCalculation(this)
+        api.registerNotifyCalculation(this);
     }
 }
