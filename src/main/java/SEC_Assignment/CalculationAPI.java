@@ -6,6 +6,7 @@
 package SEC_Assignment;
 import SEC_Assignment.API;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 /**
  *
@@ -20,6 +21,7 @@ public class CalculationAPI implements API
     private double incrementValue;
     private double YValue;
     private ArrayList<ResultHandler> resultList = new ArrayList<ResultHandler>();
+    private ArrayList<String> mathFunctions = new ArrayList<String>();
     public CalculationAPI(String expression, double minValue,double maxValue, double incrementValue)
     {
         this.expression = expression;
@@ -35,9 +37,14 @@ public class CalculationAPI implements API
     }
 
     @Override
-    public void registerMathematicalFunctions()
+    public void registerMathematicalFunctions(String mathFunction)
     {
-        
+        mathFunctions.add(mathFunction);
+    }
+    
+    public List<String> getMathFunctions()
+    {
+        return mathFunctions;
     }
     
     public void notifyResult(double x, double y)

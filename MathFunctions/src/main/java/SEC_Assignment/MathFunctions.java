@@ -9,21 +9,15 @@
  * @author 61459
  */
 package SEC_Assignment;
-        
-import java.util.HashMap;
-import java.util.Scanner;
 
-public class MathFunctions implements ResultHandler, Plugin
+public class MathFunctions implements Plugin
 {
     private String name;
     @Override
-    public void PerformOperation(double x, double y) 
-    {
-    }
-
-    @Override
     public void start(API api) 
     {
+        api.registerMathematicalFunctions("from SEC_Assignment.MathFunctions import factorial");
+        api.registerMathematicalFunctions("from SEC_Assignment.MathFunctions import fibonacci");
     }
 
     @Override
@@ -36,19 +30,20 @@ public class MathFunctions implements ResultHandler, Plugin
         return name;
     }
     
-    private static int Fibonacci(int x)
+    public static double fibonacci(double x)
     {
-        if(x <= 1)
+        int val = (int) x;
+        if(val <= 1)
         {
-            return x;
+            return val;
         }
-        return Fibonacci(x-1) + Fibonacci(x-2);
+        return fibonacci(val-1) + fibonacci(val-2);
     }
     
-    private static int Factorial(int x)
+    public static double factorial(double x)
     {
-        int factorialValue = 1;
-        for(int i = 1; i<=x;i++)
+        double factorialValue = 1.0;
+        for(double i = 1.0; i<=x;i++)
         {
             factorialValue *=i;
         }

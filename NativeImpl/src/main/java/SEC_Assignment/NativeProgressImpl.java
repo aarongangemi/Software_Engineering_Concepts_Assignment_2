@@ -10,7 +10,11 @@
  */
 package SEC_Assignment;
 public class NativeProgressImpl implements Plugin, ResultHandler
-{
+{    
+    static
+    {
+        System.loadLibrary("progress");
+    }
     private double maxXValue;
     private String name;
     @Override
@@ -28,12 +32,6 @@ public class NativeProgressImpl implements Plugin, ResultHandler
     public String getName() {
         return name;
     }
-
-    static
-    {
-        System.loadLibrary("progress");
-    }
-    
     
     @Override
     public void PerformOperation(double x, double y) 
@@ -44,4 +42,6 @@ public class NativeProgressImpl implements Plugin, ResultHandler
     }
    
     public static native double progress(double x, double val);
+
+    
 }

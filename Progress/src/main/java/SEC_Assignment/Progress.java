@@ -11,7 +11,6 @@ public class Progress implements ResultHandler, Plugin
         double percentage = (x/maxXValue)*100;
         System.out.println(percentage + "%");
     }
-    //class field for max x
 
     @Override
     public void start(API api) {

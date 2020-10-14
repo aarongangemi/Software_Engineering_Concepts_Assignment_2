@@ -50,27 +50,22 @@ public class App //implements API
            catch(NoSuchMethodException e)
            {
                System.out.println("Plugin does not exist, please try again");
-               e.printStackTrace();
            }
            catch(ClassNotFoundException f)
            {
                System.out.println("Class does not exist, please try again");
-               f.printStackTrace();
            }
            catch(InstantiationException g)
            {
                System.out.println("Something went wrong, try again");
-               g.printStackTrace();
            }
            catch(IllegalAccessException h)
            {
                System.out.println("Can't access class, try again");
-               h.printStackTrace();
            }
            catch(InvocationTargetException j)
            {
                System.out.println("Can't call class constructor, try again");
-               j.printStackTrace();
            }
         }
     }
@@ -123,7 +118,6 @@ public class App //implements API
     
     public static void EvaluateExpression()
     {
-        boolean progressLoaded = false;
         PythonInterpreter py = new PythonInterpreter();
         String expression = getExpression();
         double minValue = getMinimumValue();
@@ -134,24 +128,20 @@ public class App //implements API
         for(Plugin p : pluginList)
         {
             p.start(calcApi);
-            if(p instanceof Progress)
-            {
-                progressLoaded = true;
-            }
         }
         String tempExp;
         for(double x = minValue; x <= maxValue; x+=incrementValue)
         {
             tempExp = expression;
             tempExp = tempExp.replace("x", Double.toString(x));
+            for(int i = 0; i < calcApi.getMathFunctions().size(); i++)
+            {
+                py.exec(calcApi.getMathFunctions().get(i));
+            }
             double result = ((PyFloat) py.eval("float(" + tempExp + ")")).getValue();
+            calcApi.setYValue(result);
             calcApi.notifyResult(x, result);
             System.out.println("Result was: " + result);
-            calcApi.setYValue(result);
-        }
-        if(progressLoaded)
-        {
-            System.out.println("100% Calculation Complete");
         }
     }
 
