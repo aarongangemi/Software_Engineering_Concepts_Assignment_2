@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 public class MathFunctions implements ResultHandler, Plugin
 {
+    private String name;
     @Override
     public void PerformOperation(double x, double y) 
     {
@@ -26,13 +27,13 @@ public class MathFunctions implements ResultHandler, Plugin
     }
 
     @Override
-    public void setName(String arg0) {
-        
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
-        return "";
+        return name;
     }
     
     private static int Fibonacci(int x)

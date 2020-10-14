@@ -1,0 +1,4 @@
+See file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/linkReleaseLinux/output.txt for all output for linkReleaseLinux.
+linking libprogress.so successful.
+
+Finished linkReleaseLinux, see full log file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/linkReleaseLinux/output.txt.

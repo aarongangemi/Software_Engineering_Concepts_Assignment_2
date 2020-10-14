@@ -1,0 +1,4 @@
+See file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/linkDebugLinux/output.txt for all output for linkDebugLinux.
+linking libprogress.so successful.
+
+Finished linkDebugLinux, see full log file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/linkDebugLinux/output.txt.

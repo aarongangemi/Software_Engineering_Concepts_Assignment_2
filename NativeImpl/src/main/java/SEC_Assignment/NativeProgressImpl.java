@@ -11,32 +11,37 @@
 package SEC_Assignment;
 public class NativeProgressImpl implements Plugin, ResultHandler
 {
-
+    private double maxXValue;
+    private String name;
     @Override
-    public void start(API arg0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void start(API api) {
+        this.maxXValue = api.getMaxValue();
+        api.registerNotifyCalculation(this);
     }
 
     @Override
-    public void setName(String arg0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
 
-    @Override
-    public void PerformOperation(double arg0, double arg1) 
-    {
-        progress();
-    }
-    
     static
     {
-        System.loadLibrary("c_library");
+        System.loadLibrary("progress");
     }
     
-    public static native void progress();
+    
+    @Override
+    public void PerformOperation(double x, double y) 
+    {
+        double val = maxXValue;
+        double percentage = progress(x, val);
+        System.out.println("Progress Complete: " + percentage + "%");
+    }
+   
+    public static native double progress(double x, double val);
 }

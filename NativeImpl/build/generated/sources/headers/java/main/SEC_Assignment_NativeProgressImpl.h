@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     SEC_Assignment_NativeProgressImpl
  * Method:    progress
- * Signature: ()V
+ * Signature: (DD)D
  */
-JNIEXPORT void JNICALL Java_SEC_1Assignment_NativeProgressImpl_progress
-  (JNIEnv *, jclass);
+JNIEXPORT jdouble JNICALL Java_SEC_1Assignment_NativeProgressImpl_progress
+  (JNIEnv *, jclass, jdouble, jdouble);
 
 #ifdef __cplusplus
 }

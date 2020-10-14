@@ -22,7 +22,7 @@ tasks.withType(CppCompile).configureEach {
 library {
     // Define the library's name. (The file produced will be 'lib<baseName>.so' on Linux or 
     // '<baseName>.dll' on Windows.)
-    baseName = 'c_library'
+    baseName = 'progress'
 
     // Create a 'shared' library only (not a 'static' library).
     linkage = [Linkage.SHARED]

@@ -1,11 +1,4 @@
 See file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/compileDebugLinuxCpp/output.txt for all output for compileDebugLinuxCpp.
-compiling progress.cpp failed.
-/media/sf_Software_Engineering_Concepts/Assignment2/c_library/src/main/cpp/SEC_Assignment/progress.cpp: In function ‘void PerformOperation(JNIEnv*, jclass, jdouble, jdouble)’:
-/media/sf_Software_Engineering_Concepts/Assignment2/c_library/src/main/cpp/SEC_Assignment/progress.cpp:7:36: error: base operand of ‘->’ has non-pointer type ‘JNIEnv {aka JNIEnv_}’
-         jfieldID maxXValue = (*env)->GetFieldID(env,cls,"maxXValue", "D");
-                                    ^~
-/media/sf_Software_Engineering_Concepts/Assignment2/c_library/src/main/cpp/SEC_Assignment/progress.cpp:8:29: error: base operand of ‘->’ has non-pointer type ‘JNIEnv {aka JNIEnv_}’
-  jdouble percentage = (*env)->GetDoubleField(cls, maxXValue);
-                             ^~
+compiling progress.cpp successful.
 
 Finished compileDebugLinuxCpp, see full log file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/compileDebugLinuxCpp/output.txt.

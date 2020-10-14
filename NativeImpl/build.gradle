@@ -1,8 +1,17 @@
 plugins{
     id 'java'
 }
+evaluationDependsOn ':c_library'
+
+def libTasks = project(':c_library').tasks
+def debugLibTask = libTasks.matching{ it.name.startsWith('linkDebug') }.first()
+def releaseLibTask = libTasks.matching{ it.name.startsWith('linkRelease') }.first()
 
 dependencies {
     implementation project(':APIProject')
+    runtimeOnly files(releaseLibTask.linkedFile)
 }
+
+
+
 

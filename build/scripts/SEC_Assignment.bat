@@ -33,7 +33,7 @@ set APP_HOME=%DIRNAME%..
 for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 
 @rem Add default JVM options here. You can also use JAVA_OPTS and SEC_ASSIGNMENT_OPTS to pass JVM options to this script.
-set DEFAULT_JVM_OPTS=
+set DEFAULT_JVM_OPTS="-Djava.library.path=%APP_HOME%/lib"
 
 @rem Find java.exe
 if defined JAVA_HOME goto findJavaFromJavaHome
@@ -67,7 +67,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\SEC_Assignment.jar;%APP_HOME%\lib\guava-29.0-jre.jar;%APP_HOME%\lib\CSVWriter-1.0.jar;%APP_HOME%\lib\MathFunctions-1.0.jar;%APP_HOME%\lib\Progress-1.0.jar;%APP_HOME%\lib\APIProject-1.0.jar;%APP_HOME%\lib\NativeImpl-1.0.jar;%APP_HOME%\lib\jython-standalone-2.7.1.jar;%APP_HOME%\lib\failureaccess-1.0.1.jar;%APP_HOME%\lib\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;%APP_HOME%\lib\jsr305-3.0.2.jar;%APP_HOME%\lib\checker-qual-2.11.1.jar;%APP_HOME%\lib\error_prone_annotations-2.3.4.jar;%APP_HOME%\lib\j2objc-annotations-1.3.jar;%APP_HOME%\lib\commons-csv-1.8.jar
+set CLASSPATH=%APP_HOME%\lib\SEC_Assignment.jar;%APP_HOME%\lib\libprogress.so;%APP_HOME%\lib\guava-29.0-jre.jar;%APP_HOME%\lib\CSVWriter-1.0.jar;%APP_HOME%\lib\MathFunctions-1.0.jar;%APP_HOME%\lib\NativeImpl-1.0.jar;%APP_HOME%\lib\Progress-1.0.jar;%APP_HOME%\lib\APIProject-1.0.jar;%APP_HOME%\lib\jython-standalone-2.7.1.jar;%APP_HOME%\lib\failureaccess-1.0.1.jar;%APP_HOME%\lib\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;%APP_HOME%\lib\jsr305-3.0.2.jar;%APP_HOME%\lib\checker-qual-2.11.1.jar;%APP_HOME%\lib\error_prone_annotations-2.3.4.jar;%APP_HOME%\lib\j2objc-annotations-1.3.jar;%APP_HOME%\lib\commons-csv-1.8.jar
 
 
 @rem Execute SEC_Assignment

@@ -2,12 +2,9 @@
 #include <stdio.h>
 extern "C"
 {
-    JNIEXPORT void JNICALL PerformOperation(JNIEnv *env, jclass cls, jdouble x, jdouble y)
+    JNIEXPORT double JNICALL Java_SEC_1Assignment_NativeProgressImpl_progress(JNIEnv *env, jclass cls, jdouble x, jdouble val)
     {
-        jfieldID maxXValue = (*env)->GetFieldID(env,cls,"maxXValue", "D");
-	jdouble percentage = (*env)->GetDoubleField(cls, maxXValue);
-	double percentDouble = static_cast<double>(percentage);
-        double percentageResult = (x/percentDouble)*100;
-        printf("%f",percentageResult);
+        double percentageResult = (x/val)*100;
+        return percentageResult;
     }
 }

@@ -1,0 +1,6 @@
+-shared
+-Wl,-soname,libprogress.so
+-o
+/media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/lib/main/debug/linux/libprogress.so
+/media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/obj/main/debug/linux/e9c4pmdtbrf2cri7u2krt60ji/progress.o
+-m64
