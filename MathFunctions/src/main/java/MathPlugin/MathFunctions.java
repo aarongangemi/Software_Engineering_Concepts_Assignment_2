@@ -21,9 +21,13 @@ public class MathFunctions implements Plugin
         for(Method m : classObj.getMethods())
         {
             MathData annotation = m.getAnnotation(MathData.class);
-            if(m != null && annotation != null)
+            if(annotation != null && annotation.className().length() > 0 
+                    && annotation.name().length() > 0 && 
+                    annotation.packageName().length() > 0)
             {
-                api.registerMathematicalFunctions(annotation.name() ,"from " + annotation.packageName() + "." + annotation.className() + " import " + annotation.name());
+                api.registerMathematicalFunctions(annotation.name() ,"from " + 
+                        annotation.packageName() + "." + annotation.className() + 
+                        " import " + annotation.name());
             }
         }
     }
@@ -43,6 +47,10 @@ public class MathFunctions implements Plugin
               className="MathFunctions")
     public static double fibonacci(double x)
     {
+        if(x < 0.0)
+        {
+            return 0;
+        }
         int val = (int) x;
         if(val <= 1)
         {
@@ -55,6 +63,10 @@ public class MathFunctions implements Plugin
               className="MathFunctions")
     public static double factorial(double x)
     {
+        if(x < 0.0)
+        {
+            return 0;
+        }
         double factorialValue = 1.0;
         for(double i = 1.0; i<=x;i++)
         {

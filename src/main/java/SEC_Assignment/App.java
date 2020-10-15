@@ -47,6 +47,9 @@ public class App //implements API
               pluginObj.setName(pluginClass.getName());
               pluginOption = 0;
               pluginList.add(pluginObj);
+              System.out.println("..............................................");
+              System.out.println("Successfully Loaded Plugin: " +pluginObj.getName());
+              System.out.println("..............................................");
            }
            catch(ClassCastException c)
            {
@@ -79,7 +82,9 @@ public class App //implements API
     {
         if(pluginList.isEmpty())
         {
+            System.out.println("..............................................");
             System.out.println("No plugins have been loaded yet");
+            System.out.println("..............................................");
         }
         else
         {
@@ -108,16 +113,29 @@ public class App //implements API
     
     public static int getPluginMenuOption()
     {
-        System.out.println("Please type a number to select an option");
-        System.out.println("1. View Plugins");
-        System.out.println("2. Add Plugins");
-        Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
-        while(option < 1 || option > 2)
+        boolean inputValid = false;
+        int option = -1;
+        do
         {
-            System.out.println("Please enter an integer between 1 and 2");
-            option = sc.nextInt();
-        }
+            try
+            {
+                System.out.println("Please type a number to select an option");
+                System.out.println("1. View Plugins");
+                System.out.println("2. Add Plugins");
+                Scanner sc = new Scanner(System.in);
+                option = sc.nextInt();
+                while(option < 1 || option > 2)
+                {
+                    System.out.println("Please enter an integer between 1 and 2");
+                    option = sc.nextInt();
+                }
+                inputValid = true;
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Please enter valid input");
+            }
+        }while(!inputValid);
         return option;
     }
     
@@ -143,26 +161,47 @@ public class App //implements API
         {
             tempExp = expression;
             tempExp = tempExp.replace("x", Double.toString(x));
-            double result = ((PyFloat) py.eval("float(" + tempExp + ")")).getValue();
-            calcApi.setYValue(result);
-            calcApi.notifyResult(x, result);
-            System.out.println("Result was: " + result);
+            try
+            {
+                double result = ((PyFloat) py.eval("float(" + tempExp + ")")).getValue();
+                calcApi.setYValue(result);
+                calcApi.notifyResult(x, result);
+                System.out.println("Result was: " + result);
+            }
+            catch(PyException e)
+            {
+                System.out.println("Something went wrong with the calculation, please double check the input string");
+            }
         }
+        
     }
 
     private static int DisplayMenu()
     {
-        System.out.println("Please type a number to select an option");
-        System.out.println("1. Manage Plugins");
-        System.out.println("2. Evaluate Equation");
-        System.out.println("3. Exit");
-        Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
-        while(option < 1 || option > 3)
+        int option = -1;
+        boolean inputValid = false;
+        do
         {
-            System.out.println("Please enter an integer between 1 and 3");
-            option = sc.nextInt();
-        }
+            try
+            {
+                System.out.println("Please type a number to select an option");
+                System.out.println("1. Manage Plugins");
+                System.out.println("2. Evaluate Equation");
+                System.out.println("3. Exit");
+                Scanner sc = new Scanner(System.in);
+                option = sc.nextInt();
+                while(option < 1 || option > 3)
+                {
+                    System.out.println("Please enter an integer between 1 and 3");
+                    option = sc.nextInt();
+                }
+                inputValid = true;
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Please enter a valid number");
+            }
+        }while(!inputValid);
         return option;
     }
     
@@ -171,7 +210,7 @@ public class App //implements API
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter a mathematical expression");
         String expression = sc.nextLine();
-        while(expression.trim().length() == 0 || expression == null || !expression.contains("x"))
+        while(!expression.contains("x"))
         {
             System.out.println("Please enter a valid expression that contains the variable x");
             expression = sc.nextLine();
@@ -181,30 +220,81 @@ public class App //implements API
     
     private static double getMinimumValue()
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the minimum x value");
-        return sc.nextDouble();   
+        boolean inputValid = false;
+        double option = -1.0;
+        do
+        {
+            try
+            {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Please enter the minimum x value");
+                option = sc.nextDouble();  
+                while(option < 0.0)
+                {
+                    System.out.println("Please enter a decimal number "
+                            + "that is greater than or equal to 0");
+                    option = sc.nextDouble();
+                }
+                inputValid = true;
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Invalid input, try again");
+            }
+        }while(!inputValid);
+        return option;   
     }
     
     private static double getMaximumValue(double minValue)
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the maximum x value");
-        double maxValue = sc.nextDouble();  
-        while(maxValue < minValue)
-        {
-            System.out.println("Please enter a value higher than " + minValue);
-            maxValue = sc.nextDouble();
-        }
+        boolean inputValid = false;
+        double maxValue = -1;
+        do{
+            try
+            {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Please enter the maximum x value");
+                maxValue = sc.nextDouble();  
+                while(maxValue < minValue)
+                {
+                    System.out.println("Please enter a value higher than " + minValue);
+                    maxValue = sc.nextDouble();
+                }
+                inputValid = true;
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Invalid input, try again");
+            }
+        }while(!inputValid);
         return maxValue;
     }
     
     private static double getIncrementValue()
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the increment x value");
-        return sc.nextDouble();  
-    }
+        boolean inputValid = false;
+        double option = -1.0;
+        do
+        {
+            try
+            {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Please enter the increment x value");
+                option = sc.nextDouble();  
+                while(option < 0.0)
+                {
+                    System.out.println("Please enter a decimal number "
+                            + "that is greater than 0");
+                    option = sc.nextDouble();
+                }
+                inputValid = true;
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Invalid input, try again");
+            }
+        }while(!inputValid);
+        return option;
+    }           
     
-            
 }

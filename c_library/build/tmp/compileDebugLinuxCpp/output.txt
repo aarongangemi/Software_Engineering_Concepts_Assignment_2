@@ -1,4 +1,7 @@
 See file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/compileDebugLinuxCpp/output.txt for all output for compileDebugLinuxCpp.
-compiling progress.cpp successful.
+compiling progress.cpp failed.
+/media/sf_Software_Engineering_Concepts/Assignment2/c_library/src/main/cpp/CLibrary/progress.cpp:3:5: error: ‘JNIEXPORT’ does not name a type
+     JNIEXPORT double JNICALL Java_NativePackage_NativeDeclaration_progress(JNIEnv *env, jclass cls, jdouble x, jdouble val)
+     ^~~~~~~~~
 
 Finished compileDebugLinuxCpp, see full log file:///media/sf_Software_Engineering_Concepts/Assignment2/c_library/build/tmp/compileDebugLinuxCpp/output.txt.
