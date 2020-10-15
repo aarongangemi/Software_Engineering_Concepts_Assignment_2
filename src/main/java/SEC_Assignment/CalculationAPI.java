@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package SEC_Assignment;
-import SEC_Assignment.API;
+import API.ResultHandler;
+import API.API;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.HashMap;
 /**
  *
  * @author 61459
@@ -21,7 +21,7 @@ public class CalculationAPI implements API
     private double incrementValue;
     private double YValue;
     private ArrayList<ResultHandler> resultList = new ArrayList<ResultHandler>();
-    private ArrayList<String> mathFunctions = new ArrayList<String>();
+    private HashMap<String, String> mathFunctions = new HashMap<String, String>();
     public CalculationAPI(String expression, double minValue,double maxValue, double incrementValue)
     {
         this.expression = expression;
@@ -37,12 +37,12 @@ public class CalculationAPI implements API
     }
 
     @Override
-    public void registerMathematicalFunctions(String mathFunction)
+    public void registerMathematicalFunctions(String key, String value)
     {
-        mathFunctions.add(mathFunction);
+        mathFunctions.put(key,value);
     }
     
-    public List<String> getMathFunctions()
+    public HashMap<String, String> getMathFunctions()
     {
         return mathFunctions;
     }

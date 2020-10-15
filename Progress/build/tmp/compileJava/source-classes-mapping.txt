@@ -1,2 +1,2 @@
-SEC_Assignment/Progress.java
- SEC_Assignment.Progress
+ProgressPlugin/Progress.java
+ ProgressPlugin.Progress

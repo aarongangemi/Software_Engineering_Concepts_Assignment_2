@@ -1,2 +1,4 @@
-SEC_Assignment/MathFunctions.java
- SEC_Assignment.MathFunctions
+MathPlugin/MathFunctions.java
+ MathPlugin.MathFunctions
+MathPlugin/MathData.java
+ MathPlugin.MathData

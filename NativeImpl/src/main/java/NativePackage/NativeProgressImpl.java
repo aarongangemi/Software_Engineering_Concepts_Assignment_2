@@ -8,13 +8,10 @@
  *
  * @author 61459
  */
-package SEC_Assignment;
+package NativePackage;
+import API.*;
 public class NativeProgressImpl implements Plugin, ResultHandler
 {    
-    static
-    {
-        System.loadLibrary("progress");
-    }
     private double maxXValue;
     private String name;
     @Override
@@ -36,12 +33,12 @@ public class NativeProgressImpl implements Plugin, ResultHandler
     @Override
     public void PerformOperation(double x, double y) 
     {
+        NativeDeclaration nativeDecl = new NativeDeclaration();
         double val = maxXValue;
-        double percentage = progress(x, val);
+        double percentage = nativeDecl.progress(x, val);
         System.out.println("Progress Complete: " + percentage + "%");
     }
    
-    public static native double progress(double x, double val);
 
     
 }

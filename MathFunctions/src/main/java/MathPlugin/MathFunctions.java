@@ -8,16 +8,24 @@
  *
  * @author 61459
  */
-package SEC_Assignment;
-
+package MathPlugin;
+import java.lang.reflect.Method;
+import API.*;
 public class MathFunctions implements Plugin
 {
     private String name;
     @Override
     public void start(API api) 
     {
-        api.registerMathematicalFunctions("from SEC_Assignment.MathFunctions import factorial");
-        api.registerMathematicalFunctions("from SEC_Assignment.MathFunctions import fibonacci");
+        Class<?> classObj = this.getClass();
+        for(Method m : classObj.getMethods())
+        {
+            MathData annotation = m.getAnnotation(MathData.class);
+            if(m != null && annotation != null)
+            {
+                api.registerMathematicalFunctions(annotation.name() ,"from " + annotation.packageName() + "." + annotation.className() + " import " + annotation.name());
+            }
+        }
     }
 
     @Override
@@ -30,6 +38,9 @@ public class MathFunctions implements Plugin
         return name;
     }
     
+    @MathData(name="fibonacci",
+              packageName="MathPlugin",
+              className="MathFunctions")
     public static double fibonacci(double x)
     {
         int val = (int) x;
@@ -39,7 +50,9 @@ public class MathFunctions implements Plugin
         }
         return fibonacci(val-1) + fibonacci(val-2);
     }
-    
+    @MathData(name="factorial",
+              packageName="MathPlugin",
+              className="MathFunctions")
     public static double factorial(double x)
     {
         double factorialValue = 1.0;

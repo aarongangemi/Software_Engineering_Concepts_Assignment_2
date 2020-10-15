@@ -1,2 +1,4 @@
-SEC_Assignment/NativeProgressImpl.java
- SEC_Assignment.NativeProgressImpl
+NativePackage/NativeDeclaration.java
+ NativePackage.NativeDeclaration
+NativePackage/NativeProgressImpl.java
+ NativePackage.NativeProgressImpl

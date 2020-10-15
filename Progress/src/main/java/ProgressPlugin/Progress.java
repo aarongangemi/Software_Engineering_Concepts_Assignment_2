@@ -1,7 +1,5 @@
-package SEC_Assignment;
-import java.io.IOException;
-import java.util.*;
-
+package ProgressPlugin;
+import API.*;
 public class Progress implements ResultHandler, Plugin
 {
     private double maxXValue;

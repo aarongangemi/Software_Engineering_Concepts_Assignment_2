@@ -1,12 +1,14 @@
-package SEC_Assignment;
+package CSVPackage;
 import java.io.BufferedWriter;
 import org.apache.commons.csv.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import API.*;
 public class CSVWriter implements ResultHandler, Plugin
 {
     private String name;
+    @Override
     public void PerformOperation(double XValue, double YValue)
     {
         try
@@ -28,7 +30,7 @@ public class CSVWriter implements ResultHandler, Plugin
             System.out.println("Unable to write to file");
         }
     }
-    
+    @Override
     public void start(API api)
     {
         api.registerNotifyCalculation(this);
@@ -38,7 +40,7 @@ public class CSVWriter implements ResultHandler, Plugin
     public void setName(String name) {
         this.name = name;
     }
-    
+    @Override
     public String getName()
     {
         return name;

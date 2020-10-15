@@ -1,4 +1,4 @@
-package SEC_Assignment;
+package API;
 public interface Plugin
 {
     void start(API api);
