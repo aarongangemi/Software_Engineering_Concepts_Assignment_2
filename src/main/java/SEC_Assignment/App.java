@@ -39,7 +39,7 @@ public class App
                 else if(pluginOption == 2)
                 {
                     // user wants to add plugins
-                   AddPlugin();
+                   AddPlugin(pluginOption);
                 }
             }
             else if(menuOption == 2)
@@ -56,7 +56,7 @@ public class App
         program. The method performs a heap of validation as depicted by the try-
         catch statements below.
     */
-    public static void AddPlugin(pluginOption)
+    public static void AddPlugin(int pluginOption)
     {
         while(pluginOption == 2) // loop until plugin is valud
         {
@@ -70,7 +70,6 @@ public class App
               // set the plugin name using class name
               pluginList.add(pluginObj); // add plugin to list
               pluginOption = 0; // exit the loop due to successful plugin found
-              System.out.println("..............................................");
               System.out.println("Successfully Loaded Plugin: " +pluginObj.getName());
               System.out.println("..............................................");
               // display successful message
@@ -229,8 +228,6 @@ public class App
                 calcApi.setYValue(result);
                 // set api values
                 calcApi.notifyResult(x, result);
-                System.out.println("Result was: " + result);
-                // display result
             }
             catch(PyException e)
             {

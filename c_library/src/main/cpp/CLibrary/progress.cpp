@@ -15,9 +15,12 @@ extern "C"
         x: takes the changing x value that starts at the minimum value entered by the user.
         val: the maximum value entered by the user
     /**/
-    JNIEXPORT double JNICALL Java_NativePackage_NativeDeclaration_progress(JNIEnv *env, jclass cls, jdouble x, jdouble val)
+    JNIEXPORT double JNICALL Java_NativePackage_NativeDeclaration_progress(JNIEnv *env, jobject obj, jdouble x, jobject nativeImpl)
     {
-        double percentageResult = (x/val)*100;
+        jclass progressClass = (env)->GetObjectClass(nativeImpl);
+        jfieldID maxValueField = (env)->GetFieldID(progressClass,"maxXValue","D");
+        jdouble maxValue = (env)->GetDoubleField(nativeImpl, maxValueField);
+        double percentageResult = (x/maxValue)*100;
         return percentageResult;
     }
 }

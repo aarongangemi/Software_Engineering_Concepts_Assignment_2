@@ -14,5 +14,5 @@ public class NativeDeclaration
         System.loadLibrary("progress");
     }
     // define the progress function as native
-    public native double progress(double x, double val);
+    public native double progress(double x, NativeProgressImpl n);
 }

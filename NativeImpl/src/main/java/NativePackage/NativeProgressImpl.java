@@ -54,9 +54,7 @@ public class NativeProgressImpl implements Plugin, ResultHandler
     {
         NativeDeclaration nativeDecl = new NativeDeclaration();
         // get declaration
-        double val = maxXValue;
-        // get max value
-        double percentage = nativeDecl.progress(x, val);
+        double percentage = nativeDecl.progress(x, this);
         // call C++ code using native declaration
         System.out.println("Progress Complete: " + percentage + "%");
         // print result

@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     NativePackage_NativeDeclaration
  * Method:    progress
- * Signature: (DD)D
+ * Signature: (DLNativePackage/NativeProgressImpl;)D
  */
 JNIEXPORT jdouble JNICALL Java_NativePackage_NativeDeclaration_progress
-  (JNIEnv *, jobject, jdouble, jdouble);
+  (JNIEnv *, jobject, jdouble, jobject);
 
 #ifdef __cplusplus
 }
