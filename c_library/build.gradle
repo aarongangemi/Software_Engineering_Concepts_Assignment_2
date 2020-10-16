@@ -15,8 +15,6 @@ tasks.withType(CppCompile).configureEach {
     includes "$System.env.JAVA_HOME/include"
     includes "$System.env.JAVA_HOME/include/linux"
     includes "$System.env.JAVA_HOME/include/win32"
-    includes "/usr/lib/jvm/java-8-openjdk-amd64/include"
-    includes "/usr/lib/jvm/java-8-openjdk-amd64/include/linux"
 }
 
 library {
