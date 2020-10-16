@@ -20,3 +20,10 @@ For example:
 - ProgressPlugin.Progress
 - NativePackage.NativeProgressImpl
 - MathPlugin.MathFunctions
+
+After a plugin is successfully loaded, the plugin will be run after a python expression is successfully evaluated.
+
+To run a math function such as factorial or fibonacci, the function must be included in the expression:
+Examples:
+    "factorial(x)"
+    "fibonacci(x)"
